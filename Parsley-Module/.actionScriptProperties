@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="Main.mxml" projectUUID="d93652cf-86e7-444d-b68b-e78fb02501f3" version="11">
+  <compiler additionalCompilerArguments="-locale en_US" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="false" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="false" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" useFlashSDK="false" verifyDigests="true" warn="true">
+    <compilerSourcePath/>
+    <libraryPath defaultLinkType="1">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="3" linkType="1" path="D:/libs/as/parsley/parsley-3.0.0/release/parsley-core-3.0.0.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/libs/as/parsley/parsley-3.0.0/release/parsley-flex-3.0.0.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/libs/as/parsley/parsley-3.0.0/libs/spicelib-commands-3.1.1.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/libs/as/parsley/parsley-3.0.0/libs/spicelib-reflect-3.0.0.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/libs/as/parsley/parsley-3.0.0/libs/spicelib-util-3.1.0.swc" useDefaultLinkType="false"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="Main.mxml"/>
+  </applications>
+  <modules>
+    <module application="src/Main.mxml" destPath="modules/SenderModule.swf" optimize="true" sourcePath="src/modules/SenderModule.mxml"/>
+    <module application="src/Main.mxml" destPath="modules/ReceiverModule.swf" optimize="true" sourcePath="src/modules/ReceiverModule.mxml"/>
+  </modules>
+  <workers/>
+  <buildCSSFiles/>
+  <publishSource>
+    <sourcePathIncludes/>
+    <sourceExcludes>
+      <exclude path="html-template"/>
+    </sourceExcludes>
+  </publishSource>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+</actionScriptProperties>

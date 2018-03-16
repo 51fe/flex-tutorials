@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:parsley="http://www.spicefactory.org/parsley"
+	currentState="{model.state}">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.ListEvent;
+			
+			import components.DeleteItemRenderer;
+			
+			import models.Student;
+			import models.StudentPM;	
+
+			[Bindable]
+			public var model:StudentPM;
+
+            private function onSearch():void
+			{
+				model.search(tiFistName.text);
+			}
+			
+			private function formatBirthday(item:Object, column:DataGridColumn):String
+			{
+				var d:Date = Student(item).birthday;
+				return formatter.format(d);
+			}
+			
+			private function formatGender(item:Object, column:DataGridColumn):String
+			{
+				var gender:Boolean = Student(item).gender;
+				var genderStr:String;
+				genderStr = gender ? "男" : "女";
+				return genderStr;
+			}
+			
+			protected function onItemClick(event:ListEvent):void
+			{
+				if(event.itemRenderer is DeleteItemRenderer)
+				{
+					Alert.show("Do you want to delete this record?", "Delete", 
+						Alert.YES|Alert.NO, this, function(evt:CloseEvent):void
+					{
+						if (evt.detail == Alert.YES) 
+						{
+							model.remove(dg.selectedItem as Student);
+						}
+
+					});
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<parsley:FastInject property="model" type="{StudentPM}"/>
+		<mx:DateFormatter id="formatter" formatString="YYYY年MM月DD日"/>
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="fail"/>
+		<s:State name="success"/>
+	</s:states>
+	
+	<s:layout>
+		<s:VerticalLayout gap="10" horizontalAlign="center"/>
+	</s:layout>
+	
+	<s:HGroup verticalAlign="middle">
+		<s:Label text="姓："/>
+		<s:TextInput id="tiFistName"/>
+		<s:Button label="Search" click="onSearch()"/>
+	</s:HGroup>
+
+	<mx:DataGrid id="dg" includeIn="success" width="520" height="280" dataProvider="{model.students}"
+		itemClick="onItemClick(event)" rowCount="10">
+		<mx:columns>
+			<mx:DataGridColumn dataField="studentId" headerText="学号"/>
+			<mx:DataGridColumn dataField="name" headerText="姓名"/>
+			<mx:DataGridColumn dataField="gender" headerText="性别" labelFunction="formatGender"
+				sortable="false"/> 
+			<mx:DataGridColumn dataField="birthday" headerText="生日" labelFunction="formatBirthday"/>
+            <mx:DataGridColumn dataField="" itemRenderer="components.DeleteItemRenderer"/>
+        </mx:columns>
+	</mx:DataGrid>
+	
+	<s:Label includeIn="fail" text="{model.errorMessage}"/>
+</s:Group>

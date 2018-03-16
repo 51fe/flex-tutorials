@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:DateTimeAxis xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	parseFunction="parseDate">
+	<fx:Script>
+		<![CDATA[	
+			import mx.charts.AxisLabel;
+			import mx.charts.chartClasses.AxisLabelSet;
+			import mx.formatters.DateFormatter;
+			
+			private var df:DateFormatter = new DateFormatter();
+			
+			override protected function formatYears(d:Date, previousValue:Date, axis:DateTimeAxis): String
+			{
+				df.formatString="YYYY";
+				return df.format(d);
+			}
+			
+			override protected function formatMonths(d:Date, previousValue:Date, axis:DateTimeAxis): String
+			{
+				if(d.month == 0)
+				{
+					df.formatString="YYYY";
+				}
+				else
+				{
+					df.formatString="MMM";
+				}
+				
+				return df.format(d);
+			}
+			
+			override protected function formatDays(d:Date, previousValue:Date, axis:DateTimeAxis): String
+			{
+				df.formatString="MMM D";
+				return df.format(d);
+			}
+			
+			private function parseDate(value:String):Date
+			{
+				var dateArray:Array = value.split("/");
+				return new Date(dateArray[2], dateArray[0] - 1, dateArray[1]);
+			}
+		]]>
+	</fx:Script>
+</mx:DateTimeAxis>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:CartesianChart xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:chart="components.chart.*"
+	height="100%" width="100%" 
+	showDataTips="true" seriesFilters="[]"
+	dataTipFunction="formatDataTip">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.HitData;
+			import mx.charts.chartClasses.CartesianTransform;
+			import mx.charts.chartClasses.Series;
+			import mx.charts.series.LineSeries;
+			import mx.charts.series.items.LineSeriesItem;
+			
+			private function formatDataTip(hd:HitData):String
+			{
+				var dt:String = "";
+				dt += hd.chartItem["xValue"].toString() + "\n";
+				dt += hd.chartItem["yValue"].toString() + "\n";
+				return dt;
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:backgroundElements>
+		<mx:GridLines/>
+		<s:Group>
+			<s:Rect left="0" right="0" top="0" bottom="0">
+				<s:stroke>
+					<s:SolidColorStroke color="#2B4657"/>
+				</s:stroke>
+			</s:Rect>
+		</s:Group>
+	</mx:backgroundElements>
+	
+	<mx:horizontalAxis>
+		<chart:DateTimeAxisEx id="hAxis"/>
+	</mx:horizontalAxis>
+	
+	<mx:horizontalAxisRenderers>
+		<mx:AxisRenderer axis="{hAxis}"
+			styleName="hangingCategoryAxis"/>
+	</mx:horizontalAxisRenderers>
+	
+	<mx:verticalAxis>
+		<chart:LinearAxisEx id="vAxis" baseAtZero="false"/>
+	</mx:verticalAxis>
+	
+	<mx:verticalAxisRenderers>
+		<mx:AxisRenderer axis="{vAxis}"
+			styleName="linedNumericAxis"/>
+	</mx:verticalAxisRenderers>
+</mx:CartesianChart>

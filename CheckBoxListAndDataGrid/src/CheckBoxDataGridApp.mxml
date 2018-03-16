@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" 
+	xmlns:c="components.*"
+	verticalGap="0" height="500">
+	<mx:Script>
+	<![CDATA[
+		private var arr:Array = [
+			{ firstName: "Alex", lastName: "Harui", age: 48 },
+			{ firstName: "Gordon", lastName: "Smith", age: 54 },
+			{ firstName: "Deepa", lastName: "Subramanian", age: 22 },
+			{ firstName: "Matt", lastName: "Chotin", age: 28 },
+			{ firstName: "Ely", lastName: "Greenfield", age: 32 },
+			{ firstName: "Kevin", lastName: "Lynch", age: 15},
+			{ firstName: "Shantanu", lastName: "Narayan", age: 50 },
+			{ firstName: "Joan", lastName: "Lafferty", age: 23 },
+			{ firstName: "Ryan", lastName: "Frishberg", age: 19 },
+			{ firstName: "Jason", lastName: "Szeto", age: 30 },
+			{ firstName: "Mark", lastName: "Anders", age: 40 },
+			{ firstName: "Peter", lastName: "Flynn", age: 24 },
+			{ firstName: "Heidi", lastName: "Williams", age: 18 }
+
+		];
+
+	]]>
+	</mx:Script>
+	<c:CheckBoxDataGrid id="dg" 
+		initialize="dg.dataProvider=arr" horizontalScrollPolicy="on"
+		allowMultipleSelection="true" 
+		change="foo.text = dg.selectedIndices.toString()" >
+		<c:columns>
+			<mx:DataGridColumn width="20" dataField="firstName" headerText=" " 
+                 sortable="false" itemRenderer="components.renderers.CheckBoxRenderer" headerRenderer="components.renderers.CheckBoxHeaderRenderer" > 
+			</mx:DataGridColumn>
+			<mx:DataGridColumn dataField="firstName" headerText="First Name" />
+			<mx:DataGridColumn dataField="lastName" headerText="Last Name" />
+		</c:columns>
+	</c:CheckBoxDataGrid>
+	<mx:Label id="foo" />
+
+	<c:CheckBoxList id="list" 
+		initialize="list.dataProvider=arr" labelField="lastName" 
+		itemRenderer="components.renderers.CheckBoxRenderer" 
+		allowMultipleSelection="true" 
+		change="bar.text = list.selectedIndices.toString()" >
+
+	</c:CheckBoxList>
+	<mx:Label id="bar" />
+</mx:Application>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:c="components.*"
+	focusEnabled="false" autoDrawBackground="false"
+	creationComplete="init()">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.listClasses.AdvancedListBase;
+			import mx.events.FlexEvent;
+			import mx.events.ListEvent;
+			private var partiallySelected:Boolean = false;
+			
+			override protected function commitProperties():void
+			{
+				super.commitProperties();
+				var len:int = AdvancedListBase(owner).dataProvider.length;
+				var count:int = AdvancedListBase(owner).selectedItems.length;
+				if (owner is AdvancedListBase)
+				{
+					if (len == count)
+					{
+						selected = true;
+						partiallySelected = false;
+					}
+					else if (len == 0 || count == 0)
+					{
+						selected = false;
+						partiallySelected = false;
+					}
+					else
+					{
+						selected = false;
+						partiallySelected = true;
+					}
+					invalidateDisplayList();
+				}
+			}
+			
+			protected function cb_changeHandler(event:Event):void
+			{
+				if (!(cb.selected))
+				{
+					AdvancedListBase(owner).selectedIndex = -1;
+				}
+				else
+				{
+					var n:int = AdvancedListBase(owner).dataProvider.length;
+					var arr:Array = [];
+					for (var i:int = 0; i < n; i++)
+						arr.push(i);
+					AdvancedListBase(owner).selectedIndices = arr;
+				}
+			}
+			
+			private function init():void
+			{
+				owner.addEventListener(ListEvent.CHANGE, owner_changeHandler);
+				owner.addEventListener(FlexEvent.VALUE_COMMIT, owner_changeHandler);
+			}
+			
+			private function owner_changeHandler(event:Event):void
+			{
+				var grid:AdvancedListBase= AdvancedListBase(owner);
+				var items:Array = grid.selectedItems;
+				var count:int = items ? items.length : 0;
+				var len:int = grid.dataProvider.length;
+				cb.selected = count > 0 && len == count;
+				cb.enabled = count >= 0 && len > 0;
+				cb.partial = count > 0;
+				grid.enabled = len > 0;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<c:TriStateCheckBox id="cb" 
+		horizontalCenter="0" verticalCenter="0"
+		skinClass="skins.TriStateCheckBoxSkin"
+		change="cb_changeHandler(event)"/>
+</s:MXAdvancedDataGridItemRenderer>

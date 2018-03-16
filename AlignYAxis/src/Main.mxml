@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:chart="components.chart.*"
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	minWidth="400" minHeight="360">
+	<s:layout>
+		<s:VerticalLayout gap="0" 	
+			paddingLeft="20" paddingTop="20" 
+			paddingRight="20" paddingBottom="20"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.ChartItem;
+			import mx.charts.events.ChartItemEvent;
+			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
+			import mx.graphics.SolidColor;
+			import mx.graphics.SolidColorStroke;
+			
+			protected function itemMouseMoveHandler(event:ChartItemEvent):void
+			{
+				var item:ChartItem = event.hitData.chartItem as ChartItem;
+				var idx:int = item.index;
+				var data:XML = listColl.getItemAt(idx) as XML;
+				if(event.currentTarget != chartA)
+				{
+					for each(var ls:LineSeriesEx in chartA.series)
+					{
+						ls.addDataTip(data, idx);
+					}
+				}
+				if(event.currentTarget != chartB)
+				{
+					for each(var s:AreaSeriesEx in chartB.series)
+					{
+						s.addDataTip(data, idx);
+					}
+				}
+			}
+			
+			protected function itemRollOutHandler(event:MouseEvent):void
+			{
+				if(event.currentTarget != chartA)
+				{
+					for each(var ls:LineSeriesEx in chartA.series)
+					{
+						ls.removeDataTip();
+					}
+				}
+				if(event.currentTarget != chartB)
+				{
+					for each(var s:AreaSeriesEx in chartB.series)
+					{
+						s.removeDataTip();
+					}
+				}
+			}
+			
+			private function alignAxis(event:FlexEvent):void
+			{
+				var left:Number = Math.max(chartA.computedGutters.left, chartB.computedGutters.left);
+				//event.target.setStyle("labelGap", left);
+				event.target.verticalAxisRenderers[0].setStyle("labelGap", -left);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<chart:ChartEx id="chartA" dataProvider="{listColl}" 
+		itemRollOver="itemMouseMoveHandler(event)" 
+		itemRollOut="itemRollOutHandler(event)" 
+		creationComplete="alignAxis(event)">
+		<chart:series>
+			<chart:LineSeriesEx yField="@stockA"/>
+			<chart:LineSeriesEx yField="@stockB"/>
+		</chart:series>
+	</chart:ChartEx>
+	<chart:ChartEx id="chartB" height="160" 
+		dataProvider="{listColl}" horizontalAxisStyleNames="[noLabel]"
+		itemMouseMove="itemMouseMoveHandler(event)"
+		itemRollOut="itemRollOutHandler(event)"
+		creationComplete="alignAxis(event)">
+		<chart:series>
+			<chart:AreaSeriesEx yField="@stockC" 
+				areaFill="{new SolidColor(0x0066DD, 0.5)}" 
+				areaStroke="{new SolidColorStroke(0x0033FF)}"/>
+		</chart:series>
+	</chart:ChartEx>
+	
+	<fx:Style source="../style/main.css"/>
+	<fx:Declarations>
+		<fx:XML id="xml" source="../data/stocks.xml" format="e4x"/>
+		<s:XMLListCollection id="listColl" source="{xml..item}"/>
+		<s:SolidColorStroke id="scs" color="0x0033FF"/>
+	</fx:Declarations>
+	
+</s:Application>

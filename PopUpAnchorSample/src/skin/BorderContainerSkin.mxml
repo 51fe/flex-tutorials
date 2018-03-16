@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5">
+	
+	<fx:Metadata>
+		[HostComponent("component.FlyoutSkinnableContainer")]
+	</fx:Metadata> 
+	
+	<fx:Script fb:purpose="styling">
+		<![CDATA[         
+			/**
+			 *  @private
+			 */
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+			{
+				if (isNaN(getStyle("backgroundColor")))
+				{
+					background.visible = false;
+				}
+				else
+				{
+					background.visible = true;
+					bgFill.color = getStyle("backgroundColor");
+					bgFill.alpha = getStyle("backgroundAlpha");
+				}
+				
+				if (isNaN(getStyle("borderColor")))
+				{
+					border.visible = false;
+				}
+				else
+				{
+					border.visible = true;
+					borderStroke.color = getStyle("borderColor");
+				}
+				
+				if (!isNaN(getStyle("cornerRadius")))
+				{
+				
+					background.radiusX = border.radiusX = getStyle("cornerRadius");
+				}
+				
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+			}
+		]]>        
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+		<s:State name="confirm" />
+	</s:states>
+
+	<s:Rect id="background" left="1" right="1" top="1" bottom="1">
+		<s:fill>
+			<s:SolidColor id="bgFill" color="#FFFFFF"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Rect id="border" left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke id="borderStroke" color="#999999"/>
+		</s:stroke>
+	</s:Rect>
+	
+	<s:Group id="contentGroup" left="1" right="1" top="1" bottom="1" 
+		minWidth="0" minHeight="0">
+		<s:layout>
+			<s:VerticalLayout gap="8"
+				paddingLeft="8" paddingRight="8"
+				paddingTop="8" paddingBottom="8"/>
+		</s:layout>
+		
+		<s:Label id="labelMessage"/> 
+		
+		<s:Group width="100%" includeIn="confirm">
+			<s:layout>
+				<s:HorizontalLayout horizontalAlign="right"/>
+			</s:layout>
+			<s:Button id="buttonOk"/>
+			<s:Button id="buttonCancel"/>   
+		</s:Group>
+	</s:Group>
+	
+</s:Skin>

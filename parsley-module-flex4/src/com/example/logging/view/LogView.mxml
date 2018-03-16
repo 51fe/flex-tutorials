@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/halo"
+	xmlns:model="com.example.logging.model.*"
+	>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.logging.LogEventLevel;
+			import com.example.logging.model.LoggingTarget;
+
+			//-------------------------------------------------
+			//
+			//	Properties
+			//
+			//-------------------------------------------------
+
+			[Bindable]
+			public var logTarget : LoggingTarget;
+
+			//-----------------------------
+			//	filters
+			//-----------------------------
+
+			override public function get filters() : Array
+			{
+				return logTarget.filters;
+			}
+
+			override public function set filters( value : Array ) : void
+			{
+				logTarget.filters = value;
+			}
+
+			//-----------------------------
+			//	level
+			//-----------------------------
+
+			public function get level() : int
+			{
+				return logTarget.level;
+			}
+
+			public function set level( value : int ) : void
+			{
+				logTarget.level = value;
+			}
+		]]>
+	</fx:Script>
+
+	<s:layout>
+		<s:VerticalLayout 
+			paddingBottom="10"
+			paddingLeft="10"
+			paddingRight="10"
+			paddingTop="10"
+			/>
+	</s:layout>
+
+	<s:TextArea 
+		width="100%"
+		height="100%"
+		text="{ logTarget.logOutput }"
+		/>
+
+	<s:Button 
+		label="Clear"
+		click=" logTarget.clear() "
+		/>
+	
+</s:Group>

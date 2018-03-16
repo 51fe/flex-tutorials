@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple example to demonstrate the Spark PopUpAnchor component -->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Declarations>
+		<s:ArrayCollection id="ac">
+			<fx:Object key="1000" name="Abrasive" price="100.11" call="false"/>
+			<fx:Object  key="1001" name="Brush" price="110.01" call="true"/>
+			<fx:Object  key="1002" name="Clamp" price="120.02" call="false"/>
+			<fx:Object  key="1003" name="Drill" price="130.03" call="true"/>
+			<fx:Object  key="1004" name="Epoxy" price="140.04" call="false"/>
+			<fx:Object  key="1005" name="File" price="150.05" call="true"/>
+			<fx:Object  key="1006" name="Gouge" price="160.06" call="false"/>
+			<fx:Object  key="1007" name="Hook" price="170.07" call="true"/>
+			<fx:Object  key="1008" name="Ink" price="180.08" call="false"/>
+			<fx:Object  key="1009" name="Jack" price="190.09" call="true"/>             
+		</s:ArrayCollection>
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+	<mx:DataGrid rowCount="5" dataProvider="{ac}">
+		<mx:columns>
+			<mx:DataGridColumn dataField="name" headerText="Name"/>
+			<mx:DataGridColumn dataField="price" headerText="Price"/>
+			<mx:DataGridColumn dataField="call" headerText="Call"/>
+			<mx:DataGridColumn itemRenderer="renderer.MXCopyLinkRenderer"/>
+		</mx:columns>
+	</mx:DataGrid>
+	
+	<mx:AdvancedDataGrid rowCount="5" dataProvider="{ac}">
+		<mx:columns>
+			<mx:AdvancedDataGridColumn dataField="name" headerText="Name"/>
+			<mx:AdvancedDataGridColumn dataField="price" headerText="Price"/>
+			<mx:AdvancedDataGridColumn dataField="call" headerText="Call"/>
+			<mx:AdvancedDataGridColumn itemRenderer="renderer.ADGCopyLinkRenderer"/>
+		</mx:columns>
+	</mx:AdvancedDataGrid>
+    
+</s:Application>

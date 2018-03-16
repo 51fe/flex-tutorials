@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:parsley="http://www.spicefactory.org/parsley">
+	
+	<s:layout>
+		<s:VerticalLayout gap="10" horizontalAlign="center"/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import model.SharedModel;
+			
+			[Publish]
+			[Bindable]
+			public var sharedModel:SharedModel = new SharedModel();
+
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<parsley:Configure/>
+	</fx:Declarations>
+	
+	<fx:Binding source="ti.text" destination="sharedModel.message"/>
+	
+	<s:TextInput id="ti"/>
+</s:Group>

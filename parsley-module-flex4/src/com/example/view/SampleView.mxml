@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group 
+	xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	>
+
+	<fx:Script>
+		<![CDATA[
+			import com.example.model.presentation.ViewPM;
+
+			//-------------------------------------------------
+			//
+			//	Properties
+			//
+			//-------------------------------------------------
+
+			[Bindable]
+			public var label : String;
+
+			//-----------------------------
+			//	model
+			//-----------------------------
+
+			private var _model : ViewPM;
+
+			[Bindable]
+			public function get model() : ViewPM
+			{
+				return _model;
+			}
+
+			public function set model( value : ViewPM ) : void
+			{
+				_model = value;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout 
+			paddingBottom="10"
+			paddingLeft="10"
+			paddingRight="10"
+			paddingTop="10"
+			/>
+	</s:layout>
+
+	
+
+	<mx:Label 
+		text="{ label }"
+		fontWeight="bold"
+		fontSize="20"/>
+
+	<mx:Label 
+		text="{ model.modelName }"
+		/>
+
+	<mx:Label 
+		text="{ model ? 'Model Injected' : 'Model Not Injected!!' }"
+		color="{ model ? 0x000000 : 0xFF0000 }"
+		/>
+
+	<s:TextArea 
+		id="textArea"
+		width="100%"
+		height="100%"
+		enabled="{ model != null }"
+		text="{ model.domain.globalString }"
+		change=" model.domain.globalString = textArea.text "
+		/>
+
+	<s:Group 
+		width="100%"
+		>
+
+		<s:layout>
+			<s:HorizontalLayout/>
+		</s:layout>
+
+		<s:TextInput 
+			id="outgoingMessage"
+			width="100%"
+			enter=" model.sendMessage( outgoingMessage.text ) "
+			text="From { label }"
+			/>
+
+		<s:Button 
+			id="sendMessageButton"
+			label="Send Message"
+			click=" model.sendMessage( outgoingMessage.text ) "
+			/>
+
+	</s:Group>
+
+	<mx:Label 
+		minWidth="10"
+		width="100%"
+		text="Last Message: { model.lastMessageReceived }"
+		/>
+
+</s:Group>

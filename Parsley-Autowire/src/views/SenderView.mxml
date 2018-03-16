@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:parsley="http://www.spicefactory.org/parsley">
+	<s:layout>
+		<s:VerticalLayout gap="10" horizontalAlign="center"/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import model.SharedModel;
+			
+			[Inject]
+			public var sharedModel:SharedModel;
+			
+			protected function clickHandler(event:MouseEvent):void
+			{
+				sharedModel.message = ti.text;	
+			}
+		]]>
+	</fx:Script>
+	<s:TextInput id="ti"/>
+	<s:Button label="Say Hello" click="clickHandler(event)"/>
+</s:Group>

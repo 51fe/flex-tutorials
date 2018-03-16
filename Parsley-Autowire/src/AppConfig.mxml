@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parsley:Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:parsley="http://www.spicefactory.org/parsley" 
+	xmlns:model="model.*">
+	
+	<fx:Declarations>
+		<model:SharedModel/>
+		<parsley:View type="views.SenderView"/>
+		<parsley:View type="views.ReceiverView"/>
+	</fx:Declarations>
+	
+</parsley:Objects>

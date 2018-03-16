@@ -1,0 +1,15 @@
+<employees>
+	<employee>
+		<name>John Do</name>
+		<phone>212-222-2222</phone>
+		<age>20</age>
+		<email>john@youremail.com</email>
+	</employee>
+	
+	<employee>
+		<name>Jane Smith</name>
+		<phone>212-333-3333</phone>
+		<age>21</age>
+		<email>jane@youremail.com</email>
+	</employee>
+</employees>

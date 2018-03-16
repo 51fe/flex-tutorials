@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:mx="library://ns.adobe.com/flex/mx" 
+	xmlns:c="components.*"
+	width="800" height="600">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var ac:ArrayCollection = new ArrayCollection([
+				{ firstName: "Alex", lastName: "Harui", age: 48 },
+				{ firstName: "Gordon", lastName: "Smith", age: 54 },
+				{ firstName: "Deepa", lastName: "Subramanian", age: 22 },
+				{ firstName: "Matt", lastName: "Chotin", age: 28 },
+				{ firstName: "Ely", lastName: "Greenfield", age: 32 },
+				{ firstName: "Kevin", lastName: "Lynch", age: 15},
+				{ firstName: "Shantanu", lastName: "Narayan", age: 50 },
+				{ firstName: "Joan", lastName: "Lafferty", age: 23 },
+				{ firstName: "Ryan", lastName: "Frishberg", age: 19 },
+				{ firstName: "Jason", lastName: "Szeto", age: 30 },
+				{ firstName: "Mark", lastName: "Anders", age: 40 },
+				{ firstName: "Peter", lastName: "Flynn", age: 24 },
+				{ firstName: "Heidi", lastName: "Williams", age: 18 }
+	
+			]);
+		
+			protected function deleteHandler(event:MouseEvent):void
+			{
+				dg.deleteItems();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+	<s:Button label="Delete" click="deleteHandler(event)" enabled="{dg.selectedItem}"/>
+	
+	<c:CheckBoxDataGrid id="dg" dataProvider="{ac}">
+		<c:columns>
+			<mx:AdvancedDataGridColumn dataField="firstName" headerText="First Name" />
+			<mx:AdvancedDataGridColumn dataField="lastName" headerText="Last Name" />
+		</c:columns>
+	</c:CheckBoxDataGrid>
+</s:Application>

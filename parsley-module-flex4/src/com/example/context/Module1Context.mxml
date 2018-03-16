@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Object
+	xmlns:mx="http://www.adobe.com/2006/mxml"
+	xmlns="http://www.spicefactory.org/parsley"
+	>
+	
+	<mx:Script>
+		<![CDATA[
+			import com.example.model.domain.ExampleModel;
+			import com.example.model.presentation.ViewPM;
+		]]>
+	</mx:Script>
+	
+	<Object id="modulePM1" type="{ ViewPM }">
+		<Property name="domain" idRef="exampleModel" />
+		<Property name="modelName" value="Module 1 PM" />
+	</Object>
+	
+</mx:Object>

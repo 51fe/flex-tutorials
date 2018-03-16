@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<annotations version="1.0">
+
+	<metadata name="Inject" description="Parsley marker">
+		<context name="variable">
+			<attribute name="id" type="String" required="false" />
+			<attribute name="required" type="Boolean" required="false" />
+		</context>
+		<context name="getter">
+			<attribute name="id" type="String" required="false" />
+			<attribute name="required" type="Boolean" required="false" />
+		</context>
+		<context name="setter">
+			<attribute name="id" type="String" required="false" />
+			<attribute name="required" type="Boolean" required="false" />
+		</context>
+		<context name="method" />
+	</metadata>
+
+	<metadata name="InjectConstructor" description="Parsley marker">
+		<context name="class" />
+	</metadata>
+
+	<metadata name="Factory" description="Parsley marker">
+		<context name="method" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="AssignableTo" description="Parsley marker">
+		<context name="method" />
+	</metadata>
+
+	<metadata name="Init" description="Parsley marker">
+		<context name="method" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="Destroy" description="Parsley marker">
+		<context name="method" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="Observe" description="Parsley marker">
+		<context name="method" />
+		<attribute name="phase"
+			values="postInit, preConfigure, preInit, preDestroy, postDestroy"
+			required="false" />
+		<attribute name="objectId" type="String" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="AsyncInit" description="Parsley marker">
+		<context name="class" />
+		<attribute name="completeEvent" type="String" required="false" />
+		<attribute name="errorEvent" type="String" required="false" />
+	</metadata>
+
+	<metadata name="MessageDispatcher" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="property" type="String" required="false" />
+	</metadata>
+
+	<metadata name="ManagedEvents" description="Parsley marker">
+		<context name="class" />
+		<attribute name="names" type="Array" required="true" />
+		<attribute name="scope" type="String" required="false" />
+	</metadata>
+
+	<metadata name="MessageHandler" description="Parsley marker">
+		<context name="method" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="messageProperties" type="Array" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="property" type="String" required="false" />
+	</metadata>
+
+	<metadata name="MessageBinding" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="messageProperty" type="String" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="targetProperty" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="MessageError" description="Parsley marker">
+		<context name="method" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="Command" description="Parsley marker">
+		<context name="method" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="messageProperties" type="Array" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="CommandComplete" description="Parsley marker">
+		<context name="method" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+	<metadata name="CommandResult" description="Parsley marker">
+		<context name="method" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="CommandError" description="Parsley marker">
+		<context name="method" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="CommandStatus" description="Parsley marker">
+		<context name="variable" type="Boolean" />
+		<context name="getter" type="Boolean" />
+		<context name="setter" type="Boolean" />
+		<attribute name="type" type="Class" required="false" />
+		<attribute name="selector" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+		<attribute name="method" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="Publish" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="objectId" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="managed" type="Boolean" required="false" />
+		<attribute name="changeEvent" type="String" required="false" />
+		<attribute name="property" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="Subscribe" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="objectId" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="property" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="PublishSubscribe" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="objectId" type="String" required="false" />
+		<attribute name="scope" type="String" required="false" />
+		<attribute name="managed" type="Boolean" required="false" />
+		<attribute name="persistent" type="Boolean" required="false" />
+		<attribute name="changeEvent" type="String" required="false" />
+		<attribute name="property" type="String" required="false" />
+	</metadata>
+
+
+	<metadata name="ResourceBinding" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="bundle" type="String" required="true" />
+		<attribute name="key" type="String" required="true" />
+		<attribute name="property" type="String" required="true" />
+	</metadata>
+
+
+	<metadata name="Autoremove" description="Parsley marker">
+		<context name="class" />
+	</metadata>
+
+	<metadata name="Selector" description="Parsley marker">
+		<context name="variable" type="String" />
+		<context name="getter" type="String" />
+		<context name="setter" type="String" />
+	</metadata>
+
+
+	<metadata name="Target" description="Parsley marker">
+		<context name="variable" type="String" />
+		<context name="getter" type="String" />
+		<context name="setter" type="String" />
+	</metadata>
+
+
+	<metadata name="Internal" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+	</metadata>
+
+
+
+	<metadata name="ObjectDefinition" description="Parsley marker">
+		<context name="variable" />
+		<context name="getter" />
+		<context name="setter" />
+		<attribute name="lazy" type="String" required="false" />
+		<attribute name="singleton" type="String" required="false" />
+		<attribute name="id" type="String" required="false" />
+		<attribute name="order" type="int" required="false" />
+	</metadata>
+
+
+</annotations>
+

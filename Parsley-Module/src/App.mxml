@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:mx="library://ns.adobe.com/flex/mx"
+	xmlns:views="views.*"
+	xmlns:parsley="http://www.spicefactory.org/parsley"
+	creationComplete="initApp()">
+	
+	<s:layout>
+		<s:VerticalLayout gap="-1"
+			horizontalAlign="center" verticalAlign="middle"/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.IVisualElement;
+			import mx.events.IndexChangedEvent;
+			import mx.events.ModuleEvent;
+			import mx.modules.IModuleInfo;
+			import mx.modules.ModuleManager;
+			
+			import spark.components.NavigatorContent;
+			
+			private var info:IModuleInfo;
+			
+			private var nc:NavigatorContent = new NavigatorContent();
+			
+			private var dic:Dictionary = new Dictionary();
+			
+			private function initApp():void 
+			{
+				for each(var item:Object in al.source)
+				{
+					nc = new NavigatorContent();
+					nc.label = item.label;
+					vs.addItem(nc);
+				}
+				vs.dispatchEvent(new IndexChangedEvent(IndexChangedEvent.CHANGE, 
+					false, false, null, -1, 0));
+			}
+			
+			private function loadModule(url:String):void
+			{
+				if(url != dic[nc])
+				{
+					info = ModuleManager.getModule(url);
+					info.addEventListener(ModuleEvent.READY, modEventHandler);
+					info.load(null, null, null, moduleFactory);
+				}
+				
+			}
+			
+			private function modEventHandler(e:ModuleEvent):void 
+			{
+				nc.addElement(info.factory.create() as IVisualElement);
+				dic[nc] = e.module.url;
+			}
+			
+			
+			private function vs_changeHandler(event:IndexChangedEvent):void
+			{
+				nc = vs.selectedChild as NavigatorContent;
+				var url:String = al.getItemAt(event.newIndex).url;
+				loadModule(url);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<parsley:ContextBuilder config="AppConfig"/>
+		<s:ArrayList id="al">
+			<fx:Object url="modules/SenderModule.swf" label="Send"/>
+			<fx:Object url="modules/ReceiverModule.swf" label="Receiver"/>
+		</s:ArrayList>
+	</fx:Declarations>
+	
+	<s:TabBar id="bar" dataProvider="{vs}"/> 
+	<mx:ViewStack id="vs" 
+		width="400" height="200" 
+		borderStyle="solid" paddingLeft="20" paddingTop="20" 
+		change="vs_changeHandler(event)"/> 
+	
+</s:Application>

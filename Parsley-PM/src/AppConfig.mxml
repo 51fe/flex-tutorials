@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parsley:Objects xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:parsley="http://www.spicefactory.org/parsley" 
+	xmlns:models="models.*" >
+	<fx:Declarations>
+		<s:RemoteObject id="studentService" 
+			destination="fluorine"
+			endpoint="http://localhost:9090/Gateway.aspx"
+			source="com.riafan.remoting.StudentService" 
+			showBusyCursor="true"/>
+		
+		<models:StudentPM/>
+		
+		<parsley:MapCommand type="commands.SearchCommand" selector="{StudentMessage.SEARCH}"/>
+        <parsley:MapCommand type="commands.DeleteCommand" selector="{StudentMessage.REMOVE}"/>
+
+	</fx:Declarations>
+
+    <fx:Script>
+        <![CDATA[
+        import messages.StudentMessage;
+        ]]>
+    </fx:Script>
+</parsley:Objects>

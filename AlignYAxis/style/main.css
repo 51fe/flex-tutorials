@@ -1,0 +1,34 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace charts "mx.charts.chartClasses.*";
+
+s|Application{
+	background-color:#FFFFFF;
+}
+
+charts|DataTip{
+	font-size: 12;
+}
+
+mx|GridLines{
+	grid-direction:both;
+}
+
+.hangingCategoryAxis{
+	font-size:11;
+	tick-placement:none;
+	minor-tick-placement:none;
+	show-line:false;
+}
+
+.linedNumericAxis{
+	font-size:11;
+	tick-placement:none;
+	minor-tick-placement:none;
+	show-line:false;
+}
+
+.noLabel{
+	show-labels:false;
+	label-gap:0;
+}
